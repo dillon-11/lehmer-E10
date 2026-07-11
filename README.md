@@ -1,5 +1,7 @@
 # Lehmer's polynomial and the E₁₀ Coxeter element, in Lean 4
 
+[![build + comparator](https://github.com/dillon-11/lehmer-E10/actions/workflows/ci.yml/badge.svg)](https://github.com/dillon-11/lehmer-E10/actions/workflows/ci.yml)
+
 A machine-checked proof of two classical facts about **Lehmer's polynomial**
 
 ```
@@ -56,7 +58,7 @@ lake build           # builds Challenge (one sorry warning, intentional) and Leh
 lake env path/to/comparator/.lake/build/bin/comparator config.json
 ```
 
-On macOS (no Landlock), use comparator's development shim:
+On systems without kernel-level sandbox support, use comparator's development shim:
 
 ```bash
 COMPARATOR_LANDRUN=path/to/comparator/scripts/fake-landrun.sh \
@@ -97,6 +99,23 @@ integer matrix `C` (kernel computation), and `L(C) = 0` (kernel computation). Ov
 ℚ, the minimal polynomial of `C` divides both `L` (irreducible, so equals it) and
 the characteristic polynomial; both are monic of degree 10, hence equal; the
 identity descends to ℤ by injectivity of the coefficient map.
+
+## E₁₀ diagram cross-check
+
+`cartanE10` in [`Defs.lean`](LehmerE10/Defs.lean) encodes an A₉ chain (nodes `0..8`)
+with node `9` attached to node `2` — a trivalent diagram with arms of length `2, 1, 6`
+(nodes `0,1` / node `9` alone / nodes `3..8`) hanging off the branch node `2`, for
+`2 + 1 + 6 + 1 (branch node) = 10` nodes total. This is the standard E₁₀ hyperbolic
+Kac–Moody diagram: McMullen's `Y_{p,q,r}` notation (arm lengths counted *inclusive*
+of the shared branch node) identifies E₁₀ with `Y_{2,3,7}`, i.e. arms of length
+`1, 2, 6` excluding the branch node — matching `cartanE10` up to the order the three
+arms are listed. This is also the diagram appearing as the "(2,3,7)-star" in
+Hironaka's *What is Lehmer's number?* and as `E₈⁽¹⁾` extended once more (`E₉ = E₈⁽¹⁾`
+already sits at arms `1, 2, 5`; E₁₀ extends the length-`5` arm to `6`) — consistent
+with the docstring's "extended once more past `E₉ = E₈⁽¹⁾`". The proved identity
+`coxeterE10.charpoly = lehmerPolynomial` is itself independent numerical confirmation:
+McMullen proved this is *the* diagram whose Coxeter element realizes Lehmer's number
+as spectral radius, so an incorrectly-wired diagram would not reproduce `L` exactly.
 
 ## Provenance
 

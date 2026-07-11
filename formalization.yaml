@@ -60,7 +60,6 @@ automation:
       cost:
         wall_time: "several sessions over roughly one week"
         spend_usd: "subscription-based usage"
-        hardware: "one laptop (Apple, macOS)"
   spend_usd: "subscription-based usage"
   notes: >
     All decide-based kernel computations (the explicit Coxeter-element product, the
