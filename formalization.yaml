@@ -1,0 +1,119 @@
+version: "v0.3"
+
+project:
+  name: "lehmer-e10"
+  authors: ["Michael Ryan Clarkson"]
+  license: "Apache-2.0"
+
+sources:
+  - title: "Factorization of certain cyclotomic functions"
+    authors: ["D. H. Lehmer"]
+    id: "https://doi.org/10.2307/1968172"
+    type: "paper (Annals of Mathematics 34, 1933)"
+    author_contacted: "n/a"
+  - title: "Coxeter groups, Salem numbers and the Hilbert metric"
+    authors: ["Curtis T. McMullen"]
+    id: "https://doi.org/10.1007/s102400200001"
+    type: "paper (Publ. Math. IHES 95, 2002)"
+    author_contacted: "no"
+  - title: "Zwei Saetze ueber Gleichungen mit ganzzahligen Coefficienten"
+    authors: ["L. Kronecker"]
+    id: "https://doi.org/10.1515/crll.1857.53.173"
+    type: "paper (J. reine angew. Math. 53, 1857)"
+    author_contacted: "n/a"
+
+status:
+  scope: >
+    Two theorems about Lehmer's degree-10 polynomial L: (i) L is irreducible over
+    the integers; (ii) the characteristic polynomial of a Coxeter element of the
+    E10 Weyl group (defined in the challenge file as the product of the ten simple
+    reflections of the E10 generalized Cartan matrix, acting on the root lattice)
+    equals L.  Supporting results proved along the way include Kronecker's 1857
+    theorem in root form (a monic integer polynomial with all complex roots on the
+    unit circle has only roots of unity as roots) and the non-divisibility of L by
+    any cyclotomic polynomial.  Lehmer's 1933 conjecture (a positive lower bound
+    for Mahler measures exceeding 1) is NOT claimed, addressed, or assumed anywhere
+    in this repository.
+  sorry_count: 1
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "main_theorem"
+      file: "LehmerE10.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "config.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["claude-fable-5", "claude-opus-4-7"]
+      framework: "Claude Code"
+      tool_setup: >
+        Interactive agent sessions directed by the author.  Proof search and Lean
+        elaboration feedback loops run by the agent; route design (trace-quintic
+        root census, Kronecker + uniform cyclotomic kill, Cayley-Hamilton/minimal
+        polynomial assembly) developed across sessions and verified numerically
+        before formalization.  The one sorry in the repository is the intentional
+        placeholder in Challenge.lean (the comparator trust model).
+      cost:
+        wall_time: "several sessions over roughly one week"
+        spend_usd: "subscription-based usage"
+        hardware: "one laptop (Apple, macOS)"
+  spend_usd: "subscription-based usage"
+  notes: >
+    All decide-based kernel computations (the explicit Coxeter-element product, the
+    annihilation L(C) = 0, the order of 2 mod 1291) were cross-checked numerically
+    in Python before being committed to Lean.
+
+fidelity:
+  divergences: >
+    Kronecker's theorem is stated root-wise (every root is a root of unity) rather
+    than in the divisibility form (p divides x^n - 1), which fails for
+    non-squarefree p.  McMullen's theorem is instantiated for the specific Coxeter
+    element s0 s1 ... s9 of E10 in the simple-root basis rather than proved for
+    Coxeter elements of general hyperbolic Coxeter systems; since all Coxeter
+    elements of a Coxeter system whose diagram is a tree are conjugate, the
+    characteristic polynomial does not depend on the choice.  Irreducibility over
+    the rationals is derived from irreducibility over the integers by Gauss's
+    lemma (Mathlib's Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast).
+
+review:
+  status: "self-assessed"
+  reviewers: []
+  notes: >
+    Mechanically checkable: the claim statement is Challenge.lean (Mathlib imports
+    only); comparator verifies that main_theorem in the LehmerE10 library proves
+    exactly that statement using only the three standard axioms.  See README for
+    the verification commands.
+
+alignment:
+  namespace: "LehmerE10"
+  statements:
+    - source: "Lehmer 1933, the degree-10 polynomial of smallest known Mahler measure > 1"
+      lean: "lehmerPolynomial"
+      module: "Challenge.lean / LehmerE10/Defs.lean"
+      status: "proved"
+      note: "definition"
+    - source: "irreducibility of Lehmer's polynomial (classical, folklore)"
+      lean: "LehmerE10.lehmer_irreducible"
+      module: "LehmerE10/Main.lean"
+      status: "proved"
+    - source: "Kronecker 1857, Satz 1 (root form)"
+      lean: "LehmerE10.kronecker_roots"
+      module: "LehmerE10/Kronecker.lean"
+      status: "proved"
+    - source: "McMullen 2002 (E10 case): charpoly of the E10 Coxeter element is Lehmer's polynomial"
+      lean: "LehmerE10.coxeter_charpoly_lehmer"
+      module: "LehmerE10/Main.lean"
+      status: "proved"
+    - source: "combined claim"
+      lean: "main_theorem"
+      module: "LehmerE10.lean"
+      status: "proved"
+
+acknowledgements: >
+  Built on Mathlib (in particular NumberField.Embeddings.pow_eq_one_of_norm_eq_one,
+  the cyclotomic polynomial library, and Matrix.charpoly).  The comparator
+  verification setup follows the pattern of frenzymath/Anderson-Conjecture.
