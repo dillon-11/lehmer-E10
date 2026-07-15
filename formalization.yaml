@@ -21,6 +21,11 @@ sources:
     id: "https://doi.org/10.1515/crll.1857.53.173"
     type: "paper (J. reine angew. Math. 53, 1857)"
     author_contacted: "n/a"
+  - title: "Mahler measure of complex polynomials (Mathlib API)"
+    authors: ["Fabrizio Barroero", "Kevin H. Wilson"]
+    id: "Mathlib.Analysis.Polynomial.MahlerMeasure"
+    type: "library (Mathlib, 2025)"
+    author_contacted: "no"
 
 status:
   scope: >
@@ -30,10 +35,14 @@ status:
     reflections of the E10 generalized Cartan matrix, acting on the root lattice)
     equals L.  Supporting results proved along the way include Kronecker's 1857
     theorem in root form (a monic integer polynomial with all complex roots on the
-    unit circle has only roots of unity as roots) and the non-divisibility of L by
-    any cyclotomic polynomial.  Lehmer's 1933 conjecture (a positive lower bound
-    for Mahler measures exceeding 1) is NOT claimed, addressed, or assumed anywhere
-    in this repository.
+    unit circle has only roots of unity as roots), the non-divisibility of L by
+    any cyclotomic polynomial, the exact Mahler measure M(L) = mu (the Salem root)
+    against Mathlib's Polynomial.mahlerMeasure API with bounds 1 < M(L) < 7/5, the
+    infinite order of the E10 Coxeter element, and the exact order 30 (the Coxeter
+    number) of the E8 Coxeter element in the same convention.  Lehmer's 1933
+    conjecture (a positive lower bound for Mahler measures exceeding 1) is STATED
+    in Mathlib's Mahler-measure vocabulary (LehmerConjecture / LehmerMinimal,
+    hypothesis Props) but NOT claimed or assumed anywhere in this repository.
   sorry_count: 1
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
@@ -43,6 +52,21 @@ status:
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
       comparator_config: "config.json"
+      literature_dependencies: []
+    - declaration: "LehmerE10.lehmer_mahlerMeasure"
+      file: "LehmerE10/Mahler.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "LehmerE10.coxeterE10_infinite_order"
+      file: "LehmerE10/Mahler.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      literature_dependencies: []
+    - declaration: "LehmerE10.orderOf_coxeterE8"
+      file: "LehmerE10/CoxeterE8.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
       literature_dependencies: []
 
 automation:

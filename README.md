@@ -15,6 +15,21 @@ the integer polynomial of smallest known Mahler measure `> 1` (Lehmer, 1933):
    (the rank-10 instance of McMullen, *Coxeter groups, Salem numbers and the Hilbert
    metric*, Publ. Math. IHÉS 95, 2002).
 
+Downstream of these, the repository also proves, against Mathlib's new Mahler-measure
+API (`Polynomial.mahlerMeasure`):
+
+- **`M(L) = μ` exactly** — the Mahler measure of `L` *is* the Salem root (the number
+  `≈ 1.17628`), with the unconditional bounds `1 < M(L) < 7/5`
+  ([`Mahler.lean`](LehmerE10/Mahler.lean));
+- **Lehmer's conjecture, stated** in that vocabulary (`LehmerConjecture` gap form,
+  `LehmerMinimal` strong form — hypothesis `Prop`s, not claimed), with the proven
+  implication strong ⟹ gap, witnessed by `M(L) > 1`;
+- **the E₁₀ Coxeter element has infinite order** in `GL(10, ℤ)`, while the **E₈**
+  Coxeter element (same reflection convention) has order **exactly 30**, the Coxeter
+  number, by kernel computation ([`CoxeterE8.lean`](LehmerE10/CoxeterE8.lean)) — the
+  two endpoints of Kronecker's dichotomy: the E-series Coxeter elements pass from
+  torsion to a Salem matrix at rank 10, and the crossing value is Lehmer's number.
+
 The claim is stated in [`Challenge.lean`](Challenge.lean) — a single file importing
 only Mathlib, which defines `L`, the E₁₀ generalized Cartan matrix, its simple
 reflections, and the Coxeter element `s₀s₁⋯s₉` as the product of the reflection
@@ -25,14 +40,19 @@ theorem main_theorem :
     Irreducible lehmerPolynomial ∧ coxeterE10.charpoly = lehmerPolynomial
 ```
 
-The proof lives in the `LehmerE10` library (~1,500 lines, 6 files) and uses no
+The proof lives in the `LehmerE10` library (~1,500 lines, 9 files) and uses no
 axioms beyond Lean's three standard ones (`propext`, `Classical.choice`,
 `Quot.sound`). There is exactly one `sorry` in the repository: the intentional
 placeholder in `Challenge.lean`.
 
 **Not claimed:** Lehmer's 1933 *conjecture* (a positive lower bound for Mahler
-measures exceeding 1) is not claimed, addressed, or assumed anywhere in this
-repository. These are two known theorems, formalized.
+measures exceeding 1) is not claimed or assumed anywhere in this repository. Since
+Mathlib now carries the Mahler measure (`Polynomial.mahlerMeasure`, with Kronecker's
+theorem in Mahler form and Northcott's theorem), the conjecture *is* now **stated**
+here in that vocabulary (`LehmerConjecture`, `LehmerMinimal` in
+[`Mahler.lean`](LehmerE10/Mahler.lean) — hypothesis `Prop`s with a `sorry`-free
+implication between them), and what is *proven* is the witness data: `M(L) = μ`
+exactly, and `1 < M(L) < 7/5`.
 
 ## Verifying the proof with comparator
 
@@ -80,6 +100,9 @@ Expected output: `Your solution is okay!`
 | `LehmerE10/TraceQuintic.lean` | `L(x) = x⁵ q(x + 1/x)` with `q(y) = y⁵ + y⁴ − 5y³ − 5y² + 4y + 3`; the five real roots of `q` located by intermediate-value sign checks (four in `(−2,2)`, one in `(2, 21/10)`) |
 | `LehmerE10/UnitCircleFactors.lean` | no monic factor of `L` of positive degree has all roots on the unit circle (Kronecker + the cyclotomic kill) |
 | `LehmerE10/Main.lean` | the trace-root census, root classification (8 roots on the circle, one simple reciprocal Salem pair `{μ, 1/μ}` off it), the factor argument `⟹` irreducibility; the Coxeter element evaluated and annihilated by `L` (kernel computations), `⟹` the charpoly identity |
+| `LehmerE10/Mahler.lean` | **the Mahler measure of `L`, in Mathlib's own API**: `M(L) = μ` computed exactly from the root classification (`Polynomial.mahlerMeasure`, Jensen definition); `1 < M(L) < 7/5`; **Lehmer's conjecture stated** (`LehmerConjecture`, `LehmerMinimal` — hypothesis `Prop`s, not claimed) with the strong form implying the gap form via `M(L) > 1`; the Coxeter element has **infinite order** in `GL(10, ℤ)` |
+| `LehmerE10/CoxeterE8.lean` | the finite contrast: the **E₈** Coxeter element (same reflection convention) has order exactly `30` — the Coxeter number — by kernel computation. The E-series crosses from torsion to a Salem matrix of infinite order at rank 10, and the crossing value is Lehmer's number |
+| `LehmerE10/SalemSymmetry.lean` | the Coxeter element is unimodular (`det = 1`, i.e. `SL(10, ℤ)`); `L` is self-reciprocal (`coeff i = coeff (10 − i)`) — the `{μ, 1/μ}` Salem-pair symmetry |
 
 ## Proof sketch
 
@@ -99,6 +122,19 @@ integer matrix `C` (kernel computation), and `L(C) = 0` (kernel computation). Ov
 ℚ, the minimal polynomial of `C` divides both `L` (irreducible, so equals it) and
 the characteristic polynomial; both are monic of degree 10, hence equal; the
 identity descends to ℤ by injectivity of the coefficient map.
+
+**The Mahler measure.** Mathlib's
+`mahlerMeasure_eq_leadingCoeff_mul_prod_roots` expresses `M(L)` as
+`∏ max 1 ‖z‖` over the roots; the root classification (eight on the circle, `ν < 1`
+inside, `μ` outside, both simple) collapses the product to `μ`. The bounds follow
+from the sign-change interval `y₅ ∈ (2, 21/10)` for the Salem trace.
+
+**The two orders.** If `Cox₁₀ⁿ = 1`, the minimal polynomial — `L`, by
+irreducibility — would divide `Xⁿ − 1`; evaluating at `μ > 1` refutes it, so the
+E₁₀ Coxeter element has infinite order. For E₈ the explicit Coxeter matrix is
+computed by the kernel, `c³⁰ = ((c⁵)³)² = 1` is checked directly, and the powers
+`15, 10, 6` (i.e. `30/p` for each prime `p ∣ 30`) are checked `≠ 1`, pinning the
+order at exactly the Coxeter number `30`.
 
 ## E₁₀ diagram cross-check
 
