@@ -155,10 +155,13 @@ as spectral radius, so an incorrectly-wired diagram would not reproduce `L` exac
 
 ## Provenance
 
-The formalization was produced in AI-assisted sessions (Claude, agent mode)
-directed by the author; the decomposition into the route above and all statements
-were reviewed by the author, and every kernel computation was cross-checked
-numerically before formalization. Self-reporting metadata:
+The formalization was produced by a cognitive agentic system directed by the
+author — Claude models (Anthropic) operating the author's research interface
+("ail"): a claims registry with dependency tracking, a preregistration ledger,
+a verification-gated experiment loop, and a Lean porting pipeline with axiom
+and vocabulary audits. The decomposition into the route above and all
+statements were reviewed by the author, and every kernel computation was
+cross-checked numerically before formalization. Self-reporting metadata:
 [`formalization.yaml`](formalization.yaml). Verification does not require trusting
 any of this — that is what `Challenge.lean` + comparator are for.
 
