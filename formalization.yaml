@@ -73,12 +73,14 @@ automation:
   methods:
     - method: "agent"
       models: ["claude-fable-5", "claude-opus-4-7"]
-      framework: "Claude Code operating the author's agentic research system (\"ail\")"
+      framework: "Claude Code + the author's research engine (\"ail\")"
       tool_setup: >
-        A cognitive agentic system directed by the author: Claude agents
-        operating a research interface ("ail") with a claims registry,
-        preregistration ledger, verification-gated experiment loop, and Lean
-        porting pipeline.  Proof search and Lean
+        Three contributors of different kinds: the author (direction,
+        judgment calls, review of every statement), Claude models via Claude
+        Code (reasoning, implementation, Lean formalization), and a
+        purpose-built research engine ("ail") with a claims registry,
+        preregistration ledger, verification gates, and the Lean porting
+        pipeline.  Proof search and Lean
         elaboration feedback loops run by the agent; route design (trace-quintic
         root census, Kronecker + uniform cyclotomic kill, Cayley-Hamilton/minimal
         polynomial assembly) developed across sessions and verified numerically

@@ -155,13 +155,16 @@ as spectral radius, so an incorrectly-wired diagram would not reproduce `L` exac
 
 ## Provenance
 
-The formalization was produced by a cognitive agentic system directed by the
-author — Claude models (Anthropic) operating the author's research interface
-("ail"): a claims registry with dependency tracking, a preregistration ledger,
-a verification-gated experiment loop, and a Lean porting pipeline with axiom
-and vocabulary audits. The decomposition into the route above and all
-statements were reviewed by the author, and every kernel computation was
-cross-checked numerically before formalization. Self-reporting metadata:
+This work has three contributors of different kinds: the author, who sets
+the direction, makes the judgment calls, and reviews every statement; Claude
+models (Anthropic), which do the reasoning, implementation, and Lean
+formalization; and a purpose-built research engine ("ail") that carries the
+program's memory and enforces its method — a claims registry with dependency
+tracking, a preregistration ledger, verification gates (controls run first,
+guarded kernels, independent re-computation), and the porting pipeline with
+axiom and vocabulary audits. The decomposition into the route above was
+developed across sessions, and every kernel computation was cross-checked
+numerically before formalization. Self-reporting metadata:
 [`formalization.yaml`](formalization.yaml). Verification does not require trusting
 any of this — that is what `Challenge.lean` + comparator are for.
 
