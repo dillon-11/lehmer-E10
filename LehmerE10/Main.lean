@@ -1,36 +1,34 @@
-/-
-  Main.lean — the assembly:
-
-      `Irreducible lehmerPolynomial`   and   `coxeterE10.charpoly = lehmerPolynomial`.
-
-  Route:
-    (1) TRACE CENSUS: the trace quintic q (with L(x) = x⁵·q(x + 1/x), TraceQuintic)
-        has EXACTLY the five IVT-located real roots y₁<y₂<y₃<y₄ ∈ (−2,2), y₅ ∈ (2,21/10):
-        five distinct roots of a degree-5 polynomial exhaust its complex roots, and
-        q = ∏(X − yᵢ) — so q'(y₅) = ∏_{i<5}(y₅ − yᵢ) ≠ 0: the Salem trace root is simple.
-    (2) ROOT CLASSIFICATION: every complex root z of L has trace z + 1/z ∈ {y₁..y₅};
-        the four ball traces force ‖z‖ = 1 (norm_eq_one_of_trace_in_ball), the Salem
-        trace forces z ∈ {μ, ν} with μν = 1, ν < 1 < μ (the off-circle Salem pair).
-    (3) SALEM PAIR SIMPLE: a double root of L at t ∈ {μ,ν} would kill L' there; the
-        derivative–trace identity  z²·L'(z) = 5z⁶·q(y) + (z⁷ − z⁵)·q'(y)  then forces
-        q'(y₅) = 0 (since t ∉ {0, ±1}) — refuted by (1).  count μ = count ν = 1 in L.
-    (4) THE FACTOR ARGUMENT: L = F·G proper monic ⟹ F(0)·G(0) = L(0) = 1 ⟹ ‖F(0)‖ = 1;
-        but ‖F(0)‖ = ∏‖roots F‖ = μ^a·ν^b with (a,b) ∈ {0,1}² by (3).  (1,0) gives μ = 1,
-        (0,1) gives ν = 1 — both refuted; (0,0) makes F all-on-circle, (1,1) makes G
-        all-on-circle — both killed by `no_unit_circle_factor` (Kronecker + the
-        uniform-1291 cyclotomic kill).  No proper factor exists.
-    (5) ASSEMBLY: `lehmer_irreducible` (ℤ, then ℚ by Gauss); the Coxeter element of
-        E₁₀ is annihilated by L (kernel computation), so by
-        `charpoly_eq_lehmer_of_irreducible` its characteristic polynomial is L —
-        first over ℚ, then over ℤ by injectivity of the coefficient map.
-
-  SCOPE: Lehmer's 1933 conjecture (a positive lower bound for Mahler measures > 1)
-  is NOT claimed anywhere in this repository.
-  No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
--/
 import LehmerE10.Defs
 import LehmerE10.UnitCircleFactors
 import LehmerE10.TraceQuintic
+
+/-!
+# the assembly:
+    `Irreducible lehmerPolynomial`   and   `coxeterE10.charpoly = lehmerPolynomial`.
+Route:
+  (1) TRACE CENSUS: the trace quintic q (with L(x) = x⁵·q(x + 1/x), TraceQuintic)
+      has EXACTLY the five IVT-located real roots y₁<y₂<y₃<y₄ ∈ (−2,2), y₅ ∈ (2,21/10):
+      five distinct roots of a degree-5 polynomial exhaust its complex roots, and
+      q = ∏(X − yᵢ) — so q'(y₅) = ∏_{i<5}(y₅ − yᵢ) ≠ 0: the Salem trace root is simple.
+  (2) ROOT CLASSIFICATION: every complex root z of L has trace z + 1/z ∈ {y₁..y₅};
+      the four ball traces force ‖z‖ = 1 (norm_eq_one_of_trace_in_ball), the Salem
+      trace forces z ∈ {μ, ν} with μν = 1, ν < 1 < μ (the off-circle Salem pair).
+  (3) SALEM PAIR SIMPLE: a double root of L at t ∈ {μ,ν} would kill L' there; the
+      derivative–trace identity  z²·L'(z) = 5z⁶·q(y) + (z⁷ − z⁵)·q'(y)  then forces
+      q'(y₅) = 0 (since t ∉ {0, ±1}) — refuted by (1).  count μ = count ν = 1 in L.
+  (4) THE FACTOR ARGUMENT: L = F·G proper monic ⟹ F(0)·G(0) = L(0) = 1 ⟹ ‖F(0)‖ = 1;
+      but ‖F(0)‖ = ∏‖roots F‖ = μ^a·ν^b with (a,b) ∈ {0,1}² by (3).  (1,0) gives μ = 1,
+      (0,1) gives ν = 1 — both refuted; (0,0) makes F all-on-circle, (1,1) makes G
+      all-on-circle — both killed by `no_unit_circle_factor` (Kronecker + the
+      uniform-1291 cyclotomic kill).  No proper factor exists.
+  (5) ASSEMBLY: `lehmer_irreducible` (ℤ, then ℚ by Gauss); the Coxeter element of
+      E₁₀ is annihilated by L (kernel computation), so by
+      `charpoly_eq_lehmer_of_irreducible` its characteristic polynomial is L —
+      first over ℚ, then over ℤ by injectivity of the coefficient map.
+SCOPE: Lehmer's 1933 conjecture (a positive lower bound for Mahler measures > 1)
+is NOT claimed anywhere in this repository.
+No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
+-/
 
 namespace LehmerE10
 

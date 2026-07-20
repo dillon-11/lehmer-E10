@@ -1,20 +1,18 @@
-/-
-  SalemSymmetry.lean — unimodularity and the reciprocal (Salem-pair) symmetry.
-
-  Two small facts, downstream of `main_theorem`, recording the structure of the Coxeter
-  element as an integer lattice automorphism:
-
-  * `coxeterE10_det_one` : the Coxeter element lies in `SL(10, ℤ)` — `det = 1`.  A product
-    of the ten simple reflections (each `det = -1`) is unimodular, and its determinant is
-    pinned by the charpoly identity to the constant coefficient of Lehmer's polynomial.
-
-  * `lehmerPolynomial_selfReciprocal` : Lehmer's polynomial is palindromic, `coeff i =
-    coeff (10 - i)`.  This is the reciprocal / Salem-pair symmetry: the off-circle roots
-    come in a pair `{μ, 1/μ}`, so the spectral radius `μ` (Lehmer's number) has its inverse
-    as a conjugate.  Equivalently, the Coxeter element and its inverse share a charpoly.
--/
 import LehmerE10.Defs
 import LehmerE10.Main
+
+/-!
+# unimodularity and the reciprocal (Salem-pair) symmetry.
+Two small facts, downstream of `main_theorem`, recording the structure of the Coxeter
+element as an integer lattice automorphism:
+* `coxeterE10_det_one` : the Coxeter element lies in `SL(10, ℤ)` — `det = 1`.  A product
+  of the ten simple reflections (each `det = -1`) is unimodular, and its determinant is
+  pinned by the charpoly identity to the constant coefficient of Lehmer's polynomial.
+* `lehmerPolynomial_selfReciprocal` : Lehmer's polynomial is palindromic, `coeff i =
+  coeff (10 - i)`.  This is the reciprocal / Salem-pair symmetry: the off-circle roots
+  come in a pair `{μ, 1/μ}`, so the spectral radius `μ` (Lehmer's number) has its inverse
+  as a conjugate.  Equivalently, the Coxeter element and its inverse share a charpoly.
+-/
 
 open Polynomial Matrix
 

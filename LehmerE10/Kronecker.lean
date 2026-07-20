@@ -1,24 +1,23 @@
-/-
-  Kronecker.lean — basic facts about Lehmer's polynomial `L`, and Kronecker's theorem.
-
-  Contents:
-    • degree/monicity of `L` and the evaluation witnesses `L(1) = −1`, `L(−1) = 1`,
-      `L(2) = 1291` (prime);
-    • `kronecker_roots` — Kronecker's theorem (1857) in root form: every complex root
-      of a monic integer polynomial, all of whose complex roots lie on the unit
-      circle, is a root of unity.  Proved from Mathlib's
-      `NumberField.Embeddings.pow_eq_one_of_norm_eq_one` applied inside the number
-      field ℚ⟮z⟯.
-    • `totient_le_of_lehmer_root` — a primitive k-th root of unity that is a root of
-      `L` has φ(k) ≤ 10 (cyclotomic = minimal polynomial + degree bound).
-
-  No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
--/
 import LehmerE10.Defs
 import Mathlib.NumberTheory.NumberField.InfinitePlace.Embeddings
 import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
 import Mathlib.Tactic.ComputeDegree
 import Mathlib.Tactic.NormNum.Prime
+
+/-!
+# basic facts about Lehmer's polynomial `L`, and Kronecker's theorem.
+Contents:
+  • degree/monicity of `L` and the evaluation witnesses `L(1) = −1`, `L(−1) = 1`,
+    `L(2) = 1291` (prime);
+  • `kronecker_roots` — Kronecker's theorem (1857) in root form: every complex root
+    of a monic integer polynomial, all of whose complex roots lie on the unit
+    circle, is a root of unity.  Proved from Mathlib's
+    `NumberField.Embeddings.pow_eq_one_of_norm_eq_one` applied inside the number
+    field ℚ⟮z⟯.
+  • `totient_le_of_lehmer_root` — a primitive k-th root of unity that is a root of
+    `L` has φ(k) ≤ 10 (cyclotomic = minimal polynomial + degree bound).
+No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
+-/
 
 namespace LehmerE10
 

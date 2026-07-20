@@ -1,9 +1,10 @@
-/-
-  LehmerE10.lean — the solution root module: `main_theorem`, stated identically to
-  `Challenge.lean` and proved.
--/
 import LehmerE10.Defs
 import LehmerE10.Main
+
+/-!
+# the solution root module: `main_theorem`, stated identically to
+`Challenge.lean` and proved.
+-/
 
 /-- **The claim.**  (i) Lehmer's polynomial is irreducible over ℤ, and (ii) the
 characteristic polynomial of a Coxeter element of the E₁₀ Weyl group is Lehmer's

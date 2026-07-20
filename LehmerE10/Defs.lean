@@ -1,14 +1,14 @@
-/-
-  Defs.lean — the objects of the claim.
-
-  This file is intentionally byte-identical (after the header) to the definitions in
-  `Challenge.lean`: it defines Lehmer's polynomial, the generalized Cartan matrix of
-  the hyperbolic Kac–Moody root system E₁₀, its simple reflections acting on the root
-  lattice in the basis of simple roots, and a Coxeter element as the product of the
-  ten simple reflections.
--/
 import Mathlib.LinearAlgebra.Matrix.Charpoly.Basic
 import Mathlib.LinearAlgebra.Matrix.Notation
+
+/-!
+# the objects of the claim.
+This file is intentionally byte-identical (after the header) to the definitions in
+`Challenge.lean`: it defines Lehmer's polynomial, the generalized Cartan matrix of
+the hyperbolic Kac–Moody root system E₁₀, its simple reflections acting on the root
+lattice in the basis of simple roots, and a Coxeter element as the product of the
+ten simple reflections.
+-/
 
 open Polynomial
 

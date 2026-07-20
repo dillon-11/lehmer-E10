@@ -1,19 +1,18 @@
-/-
-  TraceQuintic.lean — locating the roots of Lehmer's polynomial via its trace quintic.
-
-  `L` is reciprocal, so with `y = x + 1/x` it factors through a degree-5 polynomial:
-    `L(x) = x⁵ · q(x + 1/x)`,  `q(y) = y⁵ + y⁴ − 5y³ − 5y² + 4y + 3`,
-  and a root of `L` lies on `|z| = 1` iff its trace `y = x + 1/x` lies in `[−2, 2]`
-  (`x = e^{iθ}`, `y = 2 cos θ`).  Salem's picture — 8 roots on the unit circle, one
-  reciprocal pair `{λ, 1/λ}` off it — therefore reduces to "`q` has 4 real roots in
-  `(−2, 2)` and one root in `(2, 21/10)`": five intermediate-value sign checks,
-  carried out here.
-
-  No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
--/
 import Mathlib.Analysis.SpecialFunctions.Complex.Circle
 import Mathlib.Topology.Order.IntermediateValue
 import Mathlib.Topology.Algebra.Polynomial
+
+/-!
+# locating the roots of Lehmer's polynomial via its trace quintic.
+`L` is reciprocal, so with `y = x + 1/x` it factors through a degree-5 polynomial:
+  `L(x) = x⁵ · q(x + 1/x)`,  `q(y) = y⁵ + y⁴ − 5y³ − 5y² + 4y + 3`,
+and a root of `L` lies on `|z| = 1` iff its trace `y = x + 1/x` lies in `[−2, 2]`
+(`x = e^{iθ}`, `y = 2 cos θ`).  Salem's picture — 8 roots on the unit circle, one
+reciprocal pair `{λ, 1/λ}` off it — therefore reduces to "`q` has 4 real roots in
+`(−2, 2)` and one root in `(2, 21/10)`": five intermediate-value sign checks,
+carried out here.
+No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
+-/
 
 namespace LehmerE10
 

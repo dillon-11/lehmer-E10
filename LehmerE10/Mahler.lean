@@ -1,32 +1,30 @@
-/-
-  Mahler.lean — the Mahler measure of Lehmer's polynomial, in Mathlib's own API.
-
-  Mathlib now has the Mahler measure (`Polynomial.mahlerMeasure`, Jensen-formula definition,
-  with `mahlerMeasure_eq_leadingCoeff_mul_prod_roots`), Kronecker's theorem in Mahler form,
-  and Northcott's theorem.  This file connects the repository to that API:
-
-  * `lehmer_mahlerMeasure` : `M(L) = μ` — the Mahler measure of Lehmer's polynomial is
-    exactly the Salem root, computed (not estimated) from the root classification: eight
-    roots on the unit circle contribute `1`, `ν = 1/μ` lies inside, and `μ` alone lies
-    outside.
-  * `one_lt_lehmer_mahlerMeasure`, `lehmer_mahlerMeasure_lt` : `1 < M(L) < 7/5`, from the
-    interval `y₅ ∈ (2, 21/10)` already isolated by the trace-quintic sign changes.
-  * `LehmerConjecture`, `LehmerMinimal` : Lehmer's 1933 question, *stated* in Mathlib's
-    vocabulary (a hypothesis `Prop`, not claimed, not assumed): Mahler measures of integer
-    polynomials do not accumulate at `1`; strongly, `L` attains the minimum.
-    `lehmerConjecture_of_minimal` : the strong form implies the gap form, with the gap
-    witnessed by `M(L)` itself — which is `> 1` by this file.
-  * `coxeterE10_infinite_order` : the E₁₀ Coxeter element has infinite order in
-    `GL(10, ℤ)`.  If `Cox^n = 1` then, since its characteristic polynomial `L` is
-    irreducible, `L` would be the minimal polynomial and would divide `Xⁿ − 1`; but `μ` is
-    a root of `L` with `μ > 1`, and every root of `Xⁿ − 1` has norm `1`.
-
-  Together with `coxeterE8_*` facts (finite case) this locates E₁₀ precisely: the Coxeter
-  series crosses from torsion (spectrum on the unit circle) to a Salem element exactly at
-  rank 10, and the crossing value is Lehmer's number.
--/
 import LehmerE10.Main
 import Mathlib.Analysis.Polynomial.MahlerMeasure
+
+/-!
+# the Mahler measure of Lehmer's polynomial, in Mathlib's own API.
+Mathlib now has the Mahler measure (`Polynomial.mahlerMeasure`, Jensen-formula definition,
+with `mahlerMeasure_eq_leadingCoeff_mul_prod_roots`), Kronecker's theorem in Mahler form,
+and Northcott's theorem.  This file connects the repository to that API:
+* `lehmer_mahlerMeasure` : `M(L) = μ` — the Mahler measure of Lehmer's polynomial is
+  exactly the Salem root, computed (not estimated) from the root classification: eight
+  roots on the unit circle contribute `1`, `ν = 1/μ` lies inside, and `μ` alone lies
+  outside.
+* `one_lt_lehmer_mahlerMeasure`, `lehmer_mahlerMeasure_lt` : `1 < M(L) < 7/5`, from the
+  interval `y₅ ∈ (2, 21/10)` already isolated by the trace-quintic sign changes.
+* `LehmerConjecture`, `LehmerMinimal` : Lehmer's 1933 question, *stated* in Mathlib's
+  vocabulary (a hypothesis `Prop`, not claimed, not assumed): Mahler measures of integer
+  polynomials do not accumulate at `1`; strongly, `L` attains the minimum.
+  `lehmerConjecture_of_minimal` : the strong form implies the gap form, with the gap
+  witnessed by `M(L)` itself — which is `> 1` by this file.
+* `coxeterE10_infinite_order` : the E₁₀ Coxeter element has infinite order in
+  `GL(10, ℤ)`.  If `Cox^n = 1` then, since its characteristic polynomial `L` is
+  irreducible, `L` would be the minimal polynomial and would divide `Xⁿ − 1`; but `μ` is
+  a root of `L` with `μ > 1`, and every root of `Xⁿ − 1` has norm `1`.
+Together with `coxeterE8_*` facts (finite case) this locates E₁₀ precisely: the Coxeter
+series crosses from torsion (spectrum on the unit circle) to a Salem element exactly at
+rank 10, and the crossing value is Lehmer's number.
+-/
 
 open Polynomial
 

@@ -1,24 +1,22 @@
-/-
-  CyclotomicKill.lean — no cyclotomic polynomial divides Lehmer's polynomial, and the
-  characteristic-polynomial identity conditional on irreducibility.
-
-  `no_cyclotomic_divisor`: no cyclotomic polynomial divides `L`.  One uniform
-  argument, using that 2 is a primitive root mod `1291 = L(2)` (order 1290):
-    Φ_k ∣ L  ⟹  Φ_k(2) ∣ L(2) = 1291 (prime), and |Φ_k(2)| ≥ 2 (Mathlib's
-    `sub_one_lt_natAbs_cyclotomic_eval`)  ⟹  |Φ_k(2)| = 1291  ⟹  1291 ∣ 2^k − 1
-    ⟹  1290 = ord₁₂₉₁(2) ∣ k  ⟹  336 = φ(1290) ∣ φ(k)  (`totient_dvd_of_dvd`)
-    — but Φ_k ∣ L forces φ(k) = deg Φ_k ≤ 10.  Contradiction.  (k = 1: L(1) = −1.)
-
-  `charpoly_eq_lehmer_of_irreducible`: if `L` is irreducible over ℚ, then any 10×10
-  integer matrix annihilated by `L` has characteristic polynomial `L` (over ℚ), via
-  Cayley–Hamilton + minimal-polynomial divisibility + degree count.
-
-  No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
--/
 import LehmerE10.Kronecker
 import Mathlib.RingTheory.Polynomial.Cyclotomic.Eval
 import Mathlib.LinearAlgebra.Matrix.Charpoly.Basic
 import Mathlib.FieldTheory.Minpoly.Field
+
+/-!
+# no cyclotomic polynomial divides Lehmer's polynomial, and the
+characteristic-polynomial identity conditional on irreducibility.
+`no_cyclotomic_divisor`: no cyclotomic polynomial divides `L`.  One uniform
+argument, using that 2 is a primitive root mod `1291 = L(2)` (order 1290):
+  Φ_k ∣ L  ⟹  Φ_k(2) ∣ L(2) = 1291 (prime), and |Φ_k(2)| ≥ 2 (Mathlib's
+  `sub_one_lt_natAbs_cyclotomic_eval`)  ⟹  |Φ_k(2)| = 1291  ⟹  1291 ∣ 2^k − 1
+  ⟹  1290 = ord₁₂₉₁(2) ∣ k  ⟹  336 = φ(1290) ∣ φ(k)  (`totient_dvd_of_dvd`)
+  — but Φ_k ∣ L forces φ(k) = deg Φ_k ≤ 10.  Contradiction.  (k = 1: L(1) = −1.)
+`charpoly_eq_lehmer_of_irreducible`: if `L` is irreducible over ℚ, then any 10×10
+integer matrix annihilated by `L` has characteristic polynomial `L` (over ℚ), via
+Cayley–Hamilton + minimal-polynomial divisibility + degree count.
+No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
+-/
 
 namespace LehmerE10
 

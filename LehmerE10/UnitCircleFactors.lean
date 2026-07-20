@@ -1,22 +1,21 @@
-/-
-  UnitCircleFactors.lean — no factor of Lehmer's polynomial lives on the unit circle.
-
-  Contents:
-    • `no_unit_circle_factor` — a monic ℤ-factor of `L` of positive degree cannot
-      have all its complex roots on the unit circle: such a factor would carry a root
-      of unity (`kronecker_roots`), whose cyclotomic minimal polynomial would descend
-      to a cyclotomic ℤ-divisor of `L` (Gauss's lemma), refuted by
-      `no_cyclotomic_divisor`.  So every proper factor must touch the off-circle
-      Salem pair.
-    • `norm_eq_one_of_trace_in_ball` — the on-circle half of the root dichotomy:
-      `z + 1/z` real in `(−2, 2)` forces `‖z‖ = 1` (real `z` is excluded by AM–GM;
-      the conjugate is then the reciprocal).
-    • `two_le_self_add_inv` — the AM–GM inequality used above.
-
-  No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
--/
 import LehmerE10.CyclotomicKill
 import Mathlib.Analysis.SpecialFunctions.Complex.Circle
+
+/-!
+# no factor of Lehmer's polynomial lives on the unit circle.
+Contents:
+  • `no_unit_circle_factor` — a monic ℤ-factor of `L` of positive degree cannot
+    have all its complex roots on the unit circle: such a factor would carry a root
+    of unity (`kronecker_roots`), whose cyclotomic minimal polynomial would descend
+    to a cyclotomic ℤ-divisor of `L` (Gauss's lemma), refuted by
+    `no_cyclotomic_divisor`.  So every proper factor must touch the off-circle
+    Salem pair.
+  • `norm_eq_one_of_trace_in_ball` — the on-circle half of the root dichotomy:
+    `z + 1/z` real in `(−2, 2)` forces `‖z‖ = 1` (real `z` is excluded by AM–GM;
+    the conjugate is then the reciprocal).
+  • `two_le_self_add_inv` — the AM–GM inequality used above.
+No `sorry`; no axioms beyond `propext`, `Classical.choice`, `Quot.sound`.
+-/
 
 namespace LehmerE10
 

@@ -153,6 +153,31 @@ with the docstring's "extended once more past `E₉ = E₈⁽¹⁾`". The proved
 McMullen proved this is *the* diagram whose Coxeter element realizes Lehmer's number
 as spectral radius, so an incorrectly-wired diagram would not reproduce `L` exactly.
 
+## Worth extracting
+
+- The integer Coxeter-element machinery (`CoxeterE8`, `Main`): Cartan
+  matrices and simple reflections of simply-laced diagrams as explicit
+  integer matrices, with kernel-decided identities such as
+  `coxeterE8 ^ 30 = 1` and `orderOf coxeterE8 = 30` — reusable for any
+  finite or hyperbolic diagram.
+- The irreducibility route (`CyclotomicKill`, `Kronecker`): excluding
+  cyclotomic factors of a reciprocal integer polynomial by explicit
+  root-of-unity arguments, a pattern that transfers to any Salem
+  candidate.
+- The trace descent (`TraceQuintic`): degree-10 reciprocal facts pushed
+  to the degree-5 trace polynomial.
+
+## Companion repositories
+
+This repository is the irreducibility anchor for a small family:
+[`wieferich-families`](https://github.com/dillon-11/wieferich-families) (Wieferich loci of algebraic units — paper, census
+data, kernels, and its own Lean layer; its Salem census of Lehmer's
+unit relies on the theorem proved here), [`salem-tower`](https://github.com/dillon-11/salem-tower)
+(graded prime towers over cyclotomic values of Salem units), and
+[`cyclotomic-orders`](https://github.com/dillon-11/cyclotomic-orders) (order and parity machinery over
+`ZMod p`). Each builds against Mathlib
+only; there are no cross-repo dependencies.
+
 ## Provenance
 
 Three contributors: the human author (direction, judgment, review);

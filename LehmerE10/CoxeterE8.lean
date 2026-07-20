@@ -1,27 +1,24 @@
-/-
-  CoxeterE8.lean — the finite contrast: the E₈ Coxeter element has order 30.
-
-  The E-series Coxeter elements cross a phase boundary at rank 10.  For the *finite* root
-  system E₈ the Coxeter element is torsion — its order is the Coxeter number `h = 30`, and
-  its spectrum consists of the primitive 30th roots of unity (the exponents of E₈ are
-  exactly the totatives of 30).  Two ranks later, at the hyperbolic E₁₀, the Coxeter
-  element is a Salem matrix of infinite order (`coxeterE10_infinite_order`) whose spectral
-  radius is Lehmer's number.
-
-  This file pins the finite side by kernel computation, in the same simple-reflection
-  convention as `Defs.lean`:
-
-  * `coxeterE8_pow_thirty` : `coxeterE8 ^ 30 = 1`;
-  * `orderOf_coxeterE8` : the order is exactly `30` (no proper power at `30/2, 30/3, 30/5`
-    is the identity).
-
-  So the pair (E₈, E₁₀) realizes both sides of Kronecker's dichotomy for integer matrices:
-  spectrum on the unit circle ⟹ roots of unity ⟹ finite order, versus one eigenvalue off
-  the circle ⟹ infinite order — with Lehmer's number as the first exit.
--/
 import LehmerE10.Defs
 import LehmerE10.Mahler
 import Mathlib.GroupTheory.OrderOfElement
+
+/-!
+# the finite contrast: the E₈ Coxeter element has order 30.
+The E-series Coxeter elements cross a phase boundary at rank 10.  For the *finite* root
+system E₈ the Coxeter element is torsion — its order is the Coxeter number `h = 30`, and
+its spectrum consists of the primitive 30th roots of unity (the exponents of E₈ are
+exactly the totatives of 30).  Two ranks later, at the hyperbolic E₁₀, the Coxeter
+element is a Salem matrix of infinite order (`coxeterE10_infinite_order`) whose spectral
+radius is Lehmer's number.
+This file pins the finite side by kernel computation, in the same simple-reflection
+convention as `Defs.lean`:
+* `coxeterE8_pow_thirty` : `coxeterE8 ^ 30 = 1`;
+* `orderOf_coxeterE8` : the order is exactly `30` (no proper power at `30/2, 30/3, 30/5`
+  is the identity).
+So the pair (E₈, E₁₀) realizes both sides of Kronecker's dichotomy for integer matrices:
+spectrum on the unit circle ⟹ roots of unity ⟹ finite order, versus one eigenvalue off
+the circle ⟹ infinite order — with Lehmer's number as the first exit.
+-/
 
 open Matrix
 
