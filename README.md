@@ -155,18 +155,12 @@ as spectral radius, so an incorrectly-wired diagram would not reproduce `L` exac
 
 ## Provenance
 
-This work has three contributors of different kinds: the author, who sets
-the direction, makes the judgment calls, and reviews every statement; Claude
-models (Anthropic), which do the reasoning, implementation, and Lean
-formalization; and a purpose-built research engine ("ail") that carries the
-program's memory and enforces its method — a claims registry with dependency
-tracking, a preregistration ledger, verification gates (controls run first,
-guarded kernels, independent re-computation), and the porting pipeline with
-axiom and vocabulary audits. The decomposition into the route above was
-developed across sessions, and every kernel computation was cross-checked
-numerically before formalization. Self-reporting metadata:
-[`formalization.yaml`](formalization.yaml). Verification does not require trusting
-any of this — that is what `Challenge.lean` + comparator are for.
+Three contributors: the human author (direction, judgment, review);
+Claude (Anthropic) — reasoning, implementation, Lean formalization; and a
+research harness enforcing preregistration, control-first experiments, and
+independent re-computation. Trust none of them: every claim is
+kernel-checked or re-computable in one command. Machine-readable
+metadata: `formalization.yaml`.
 
 ## License
 
