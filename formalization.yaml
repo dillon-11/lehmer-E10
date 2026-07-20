@@ -75,73 +75,8 @@ automation:
       models: ["claude-fable-5", "claude-opus-4-7"]
       framework: "Claude Code + the author's research engine (\"ail\")"
       tool_setup: >
-        Three contributors of different kinds: the author (direction,
-        judgment calls, review of every statement), Claude models via Claude
-        Code (reasoning, implementation, Lean formalization), and a
-        purpose-built research engine ("ail") with a claims registry,
-        preregistration ledger, verification gates, and the Lean porting
-        pipeline.  Proof search and Lean
-        elaboration feedback loops run by the agent; route design (trace-quintic
-        root census, Kronecker + uniform cyclotomic kill, Cayley-Hamilton/minimal
-        polynomial assembly) developed across sessions and verified numerically
-        before formalization.  The one sorry in the repository is the intentional
-        placeholder in Challenge.lean (the comparator trust model).
-      cost:
-        wall_time: "several sessions over roughly one week"
-        spend_usd: "subscription-based usage"
-  spend_usd: "subscription-based usage"
-  notes: >
-    All decide-based kernel computations (the explicit Coxeter-element product, the
-    annihilation L(C) = 0, the order of 2 mod 1291) were cross-checked numerically
-    in Python before being committed to Lean.
-
-fidelity:
-  divergences: >
-    Kronecker's theorem is stated root-wise (every root is a root of unity) rather
-    than in the divisibility form (p divides x^n - 1), which fails for
-    non-squarefree p.  McMullen's theorem is instantiated for the specific Coxeter
-    element s0 s1 ... s9 of E10 in the simple-root basis rather than proved for
-    Coxeter elements of general hyperbolic Coxeter systems; since all Coxeter
-    elements of a Coxeter system whose diagram is a tree are conjugate, the
-    characteristic polynomial does not depend on the choice.  Irreducibility over
-    the rationals is derived from irreducibility over the integers by Gauss's
-    lemma (Mathlib's Polynomial.IsPrimitive.Int.irreducible_iff_irreducible_map_cast).
-
-review:
-  status: "self-assessed"
-  reviewers: []
-  notes: >
-    Mechanically checkable: the claim statement is Challenge.lean (Mathlib imports
-    only); comparator verifies that main_theorem in the LehmerE10 library proves
-    exactly that statement using only the three standard axioms.  See README for
-    the verification commands.
-
-alignment:
-  namespace: "LehmerE10"
-  statements:
-    - source: "Lehmer 1933, the degree-10 polynomial of smallest known Mahler measure > 1"
-      lean: "lehmerPolynomial"
-      module: "Challenge.lean / LehmerE10/Defs.lean"
-      status: "proved"
-      note: "definition"
-    - source: "irreducibility of Lehmer's polynomial (classical, folklore)"
-      lean: "LehmerE10.lehmer_irreducible"
-      module: "LehmerE10/Main.lean"
-      status: "proved"
-    - source: "Kronecker 1857, Satz 1 (root form)"
-      lean: "LehmerE10.kronecker_roots"
-      module: "LehmerE10/Kronecker.lean"
-      status: "proved"
-    - source: "McMullen 2002 (E10 case): charpoly of the E10 Coxeter element is Lehmer's polynomial"
-      lean: "LehmerE10.coxeter_charpoly_lehmer"
-      module: "LehmerE10/Main.lean"
-      status: "proved"
-    - source: "combined claim"
-      lean: "main_theorem"
-      module: "LehmerE10.lean"
-      status: "proved"
-
-acknowledgements: >
-  Built on Mathlib (in particular NumberField.Embeddings.pow_eq_one_of_norm_eq_one,
-  the cyclotomic polynomial library, and Matrix.charpoly).  The comparator
-  verification setup follows the pattern of frenzymath/Anderson-Conjecture.
+        Three contributors: the human author (direction, judgment, review);
+        Claude models via Claude Code (reasoning, implementation, Lean
+        formalization); and the author's research harness ("ail") enforcing
+        preregistration, control-first experiments, guard-checked kernels,
+        and independent re-computation.
