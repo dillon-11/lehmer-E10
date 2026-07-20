@@ -1,3 +1,8 @@
+/-
+Copyright (c) 2026 Dillon Ryan. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Dillon Ryan
+-/
 import Mathlib.Analysis.SpecialFunctions.Complex.Circle
 import Mathlib.Topology.Order.IntermediateValue
 import Mathlib.Topology.Algebra.Polynomial
@@ -73,7 +78,8 @@ theorem traceQ_root_4 : ∃ y ∈ Set.Ioo (0 : ℝ) 1, traceQ y = 0 := by
     traceQ_cont.continuousOn h
   exact ⟨y, hy, hy0⟩
 
-/-- The SALEM trace root in `(2, 21/10)` — `y_L = λ_L + 1/λ_L > 2`, the off-circle reciprocal pair. -/
+/-- The SALEM trace root in `(2, 21/10)` — `y_L = λ_L + 1/λ_L > 2`, the off-circle
+reciprocal pair. -/
 theorem traceQ_root_salem : ∃ y ∈ Set.Ioo (2 : ℝ) (21/10), traceQ y = 0 := by
   have h : (0:ℝ) ∈ Set.Ioo (traceQ 2) (traceQ (21/10)) := by
     rw [Set.mem_Ioo]; unfold traceQ; norm_num

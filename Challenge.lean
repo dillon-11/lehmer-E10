@@ -1,4 +1,9 @@
 /-
+Copyright (c) 2026 Dillon Ryan. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Dillon Ryan
+-/
+/-
   Challenge.lean — the claim, stated against Mathlib only.
 
   This file is the trust surface of the repository: it imports nothing but Mathlib,

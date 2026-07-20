@@ -1,3 +1,8 @@
+/-
+Copyright (c) 2026 Dillon Ryan. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Dillon Ryan
+-/
 import LehmerE10.Main
 import LehmerE10.CyclotomicKill
 
@@ -27,7 +32,8 @@ namespace LehmerE10
 
 /-- **The E₁₀ Coxeter toral automorphism is ergodic**: its characteristic polynomial has no
 cyclotomic factor, i.e. `coxeterE10` has no root-of-unity eigenvalue.  Immediate from
-`coxeter_charpoly_lehmer` (charpoly `= L`) and `no_cyclotomic_divisor` (no cyclotomic divides `L`). -/
+`coxeter_charpoly_lehmer` (charpoly `= L`) and `no_cyclotomic_divisor` (no cyclotomic
+divides `L`). -/
 theorem coxeterE10_ergodic {k : ℕ} (hk : 1 ≤ k) :
     ¬ (cyclotomic k ℤ ∣ coxeterE10.charpoly) := by
   rw [coxeter_charpoly_lehmer]
